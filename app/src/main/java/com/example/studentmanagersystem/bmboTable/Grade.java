@@ -1,4 +1,4 @@
-package com.example.studentmanagersystem.entity;
+package com.example.studentmanagersystem.bmboTable;
 
 import cn.bmob.v3.BmobObject;
 

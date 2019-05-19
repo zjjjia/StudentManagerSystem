@@ -1,7 +1,6 @@
 package com.example.studentmanagersystem.Model;
 
-import com.example.studentmanagersystem.callback.CloudDbCallback;
-import com.example.studentmanagersystem.entity.User;
+import com.example.studentmanagersystem.bmboTable.User;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ import cn.bmob.v3.listener.FindListener;
 
 public class LoginModel {
 
-    public void login(String userId, String password, final CloudDbCallback<User> cloudDbCallback){
+    public void login(String userId, String password, final LoginCallback callback){
 
         BmobQuery<User> query = new BmobQuery<>();
 
@@ -23,14 +22,22 @@ public class LoginModel {
             public void done(List<User> list, BmobException e) {
                 if(e == null) {
                     if(list.size() == 0){
-                        cloudDbCallback.accountError();
+                        callback.accountError();
                     }else {
-                        cloudDbCallback.querySuccess(list.get(0));
+                        callback.querySuccess(list.get(0));
                     }
                 }else{
-                    cloudDbCallback.queryFailed(e);
+                    callback.queryFailed(e);
                 }
             }
         });
+    }
+
+    public interface LoginCallback{
+        void accountError();
+
+        void querySuccess(User user);
+
+        void queryFailed(BmobException e);
     }
 }

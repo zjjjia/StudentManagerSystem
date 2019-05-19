@@ -4,9 +4,7 @@ import android.content.Context;
 
 import com.example.studentmanagersystem.Model.LoginModel;
 import com.example.studentmanagersystem.base.BasePresenter;
-import com.example.studentmanagersystem.base.IView;
-import com.example.studentmanagersystem.callback.CloudDbCallback;
-import com.example.studentmanagersystem.entity.User;
+import com.example.studentmanagersystem.bmboTable.User;
 import com.example.studentmanagersystem.presenter.iview.ILoginView;
 
 import cn.bmob.v3.exception.BmobException;
@@ -28,7 +26,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
     }
 
     public void login(String userId, String password){
-        mModel.login(userId, password, new CloudDbCallback<User>() {
+        mModel.login(userId, password, new LoginModel.LoginCallback() {
             @Override
             public void accountError() {
                 mIView.accountError();

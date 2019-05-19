@@ -1,19 +1,18 @@
 package com.example.studentmanagersystem.base;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
 import com.example.studentmanagersystem.Utils.LogUtil;
-import com.example.studentmanagersystem.entity.User;
+import com.example.studentmanagersystem.bmboTable.User;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
 
-public class BaseActivity extends AppCompatActivity implements IView{
+public class BaseActivity extends FragmentActivity implements IView{
 
     private static final String TAG = "BaseActivity";
 
