@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".teacher.view.AddCourseActivity">
+
+    <EditText
+        android:id="@+id/edit_course_name"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/edit_course_time"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/bg_input"
+        android:hint="请输入课程名称"/>
+
+    <EditText
+        android:id="@+id/edit_course_time"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/bg_input"
+        android:hint="请输入课程时间"/>
+
+    <Button
+        android:id="@+id/completed_btn"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@id/edit_course_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_button"
+        android:text="完成"
+        android:textSize="18sp"/>
+
+</android.support.constraint.ConstraintLayout>

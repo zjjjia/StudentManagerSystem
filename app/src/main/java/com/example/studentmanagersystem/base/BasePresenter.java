@@ -4,7 +4,7 @@ import android.content.Context;
 
 public abstract class BasePresenter<T extends IView>{
 
-    private Context mContext;
+    public Context mContext;
     public T mIView;
 
     public BasePresenter(Context context, T iView){

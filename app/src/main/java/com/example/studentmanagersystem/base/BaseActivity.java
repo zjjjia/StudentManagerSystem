@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
 import com.example.studentmanagersystem.Utils.LogUtil;
-import com.example.studentmanagersystem.bmboTable.User;
+import com.example.studentmanagersystem.entity.User;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.exception.BmobException;

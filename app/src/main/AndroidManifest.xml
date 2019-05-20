@@ -16,14 +16,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.teacher.GradeManagerActivity"></activity>
-        <activity android:name=".view.teacher.CheckManagerActivity" />
-        <activity android:name=".view.teacher.CourseManagerActivity" />
+        <activity android:name=".student.view.CourseActivity"></activity>
+        <activity android:name=".student.view.StudentHomeActivity" />
+        <activity android:name=".teacher.view.AddCourseActivity" />
+        <activity android:name=".teacher.view.GradeManagerActivity" />
+        <activity android:name=".teacher.view.CheckManagerActivity" />
+        <activity android:name=".teacher.view.CourseManagerActivity" />
         <activity
-            android:name=".view.teacher.TeacherHomeActivity"
+            android:name=".teacher.view.TeacherHomeActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name=".view.LoginActivity"
+            android:name=".LoginActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
