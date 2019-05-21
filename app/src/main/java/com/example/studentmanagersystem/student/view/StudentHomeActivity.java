@@ -45,7 +45,8 @@ public class StudentHomeActivity extends BaseActivity {
         gradeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(StudentHomeActivity.this, QueryGradeActivity.class);
+                startActivity(intent);
             }
         });
     }

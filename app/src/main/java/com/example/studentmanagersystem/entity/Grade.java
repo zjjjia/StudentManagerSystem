@@ -7,6 +7,7 @@ public class Grade extends BmobObject {
     private String studentId;
     private String courseId;
     private Integer grade;
+    private String courseName;
 
     public String getStudentId() {
         return studentId;
@@ -32,12 +33,23 @@ public class Grade extends BmobObject {
         this.grade = grade;
     }
 
+    public String getCourseName() {
+
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
     @Override
     public String toString() {
         return "Grade{" +
                 "studentId='" + studentId + '\'' +
                 ", courseId='" + courseId + '\'' +
                 ", grade=" + grade +
+                ", courseName='" + courseName + '\'' +
                 '}';
     }
+
 }
