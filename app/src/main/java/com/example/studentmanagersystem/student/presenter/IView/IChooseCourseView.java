@@ -7,10 +7,11 @@ import java.util.List;
 
 import cn.bmob.v3.exception.BmobException;
 
+public interface IChooseCourseView extends IView {
 
-public interface ICourseView extends IView {
-
-    void loadCourseInfo(List<Course> courseList);
+    void loadCourseSuccess(List<Course> courseList);
 
     void onError(Throwable e);
+
+    void choseSuccess();
 }

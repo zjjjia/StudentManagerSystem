@@ -25,11 +25,11 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
     }
 
-    public void login(String userId, String password){
+    public void login(String userId, String password) {
         mModel.login(userId, password, new LoginModel.LoginCallback() {
             @Override
             public void accountError() {
@@ -49,14 +49,18 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
         });
     }
 
-    private void saveCache(final User user){
+    private void saveCache(final User user) {
         Observable.create(new ObservableOnSubscribe<Object>() {
             @Override
             public void subscribe(ObservableEmitter<Object> emitter) throws Exception {
                 SharedPreferences userInfo = mContext.getSharedPreferences("userInfo", 0);
                 SharedPreferences.Editor editor = userInfo.edit();
 
-                editor.putString("teacherId", user.getObjectId());
+                if (user.getPermission() == 0) {
+                    editor.putString("teacherId", user.getObjectId());
+                } else {
+                    editor.putString("studentId", user.getObjectId());
+                }
                 editor.putInt("userId", user.getUserId());
                 editor.putString("userName", user.getUserName());
                 editor.putString("password", user.getPassword());

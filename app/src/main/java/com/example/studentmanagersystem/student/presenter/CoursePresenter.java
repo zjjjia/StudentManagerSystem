@@ -23,21 +23,24 @@ public class CoursePresenter extends BasePresenter<ICourseView> {
         super(context, iView);
 
         mModel = new CourseModel();
-        loadCourseInfo();
+        loadChoseCourseInfo();
     }
 
-    public void loadCourseInfo(){
+    /**
+     * 加载已选择课程
+     */
+    public void loadChoseCourseInfo() {
         SharedPreferences userInfo = mContext.getSharedPreferences("userInfo", 0);
         String studentId = userInfo.getString("objectId", null);
 
-        mModel.queryCourseList(studentId, new CourseModel.CourseCallback<Course>() {
+        mModel.queryStudentCourseInfo(studentId, new CourseModel.CourseCallback<List<Course>>() {
             @Override
-            public void querySuccess(List<Course> list) {
+            public void onSuccess(List<Course> list) {
                 mIView.loadCourseInfo(list);
             }
 
             @Override
-            public void onError(BmobException e) {
+            public void onError(Throwable e) {
                 LogUtil.e(TAG, "onError: " + e);
                 mIView.onError(e);
             }

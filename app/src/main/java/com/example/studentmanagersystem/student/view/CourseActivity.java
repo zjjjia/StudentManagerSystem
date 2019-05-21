@@ -1,5 +1,6 @@
 package com.example.studentmanagersystem.student.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,7 +37,7 @@ public class CourseActivity extends BaseActivity implements ICourseView {
     @Override
     public void onRestart(){
         super.onRestart();
-        mPresenter.loadCourseInfo();
+        mPresenter.loadChoseCourseInfo();
     }
 
     private void initView(){
@@ -46,7 +47,8 @@ public class CourseActivity extends BaseActivity implements ICourseView {
         mAddCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(CourseActivity.this, ChooseCourseActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -67,7 +69,7 @@ public class CourseActivity extends BaseActivity implements ICourseView {
     }
 
     @Override
-    public void onError(BmobException e) {
+    public void onError(Throwable e) {
 
     }
 }

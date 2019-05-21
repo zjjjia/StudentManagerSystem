@@ -2,12 +2,11 @@ package com.example.studentmanagersystem.entity;
 
 import cn.bmob.v3.BmobObject;
 
-public class Grade extends BmobObject {
+public class ChoseCourse extends BmobObject {
 
     private String studentId;   //user表中的objectId
     private String courseId;    //course表中的objectId
     private Integer grade;
-    private String teacherId;   //user表中的objectId
 
 
     public String getStudentId() {
@@ -34,21 +33,12 @@ public class Grade extends BmobObject {
         this.grade = grade;
     }
 
-    public String getTeacherId() {
-        return teacherId;
-    }
-
-    public void setTeacherId(String teacherId) {
-        this.teacherId = teacherId;
-    }
-
     @Override
     public String toString() {
-        return "Grade{" +
+        return "ChoseCourse{" +
                 "studentId='" + studentId + '\'' +
                 ", courseId='" + courseId + '\'' +
                 ", grade=" + grade +
-                ", teacherId='" + teacherId + '\'' +
                 '}';
     }
 }
