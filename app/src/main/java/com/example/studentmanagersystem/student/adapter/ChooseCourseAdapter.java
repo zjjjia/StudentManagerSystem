@@ -19,7 +19,7 @@ public class ChooseCourseAdapter extends RecyclerView.Adapter<ChooseCourseAdapte
 
     private List<Course> mCourseList = new ArrayList<>();
     private ChooseCourseListener mListener;
-    private List<String> mChoosedCourseList = new ArrayList<>();
+    private List<String> mchoseCourseList = new ArrayList<>();
 
     @NonNull
     @Override
@@ -36,7 +36,7 @@ public class ChooseCourseAdapter extends RecyclerView.Adapter<ChooseCourseAdapte
             viewHolder.courseNameText.setText("课程名称");
             viewHolder.courseTeacherText.setText("教师姓名");
             viewHolder.courseTimeText.setText("上课时间");
-            viewHolder.chooseCheckBox.setVisibility(View.GONE);
+            viewHolder.chooseCheckBox.setVisibility(View.INVISIBLE);
         } else {
             viewHolder.courseNameText.setText(mCourseList.get(position - 1).getCourseName());
             viewHolder.courseTeacherText.setText(mCourseList.get(position - 1).getUserName());
@@ -46,9 +46,9 @@ public class ChooseCourseAdapter extends RecyclerView.Adapter<ChooseCourseAdapte
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    mChoosedCourseList.add(mCourseList.get(position - 1).getObjectId());
+                    mchoseCourseList.add(mCourseList.get(position - 1).getObjectId());
                 } else {
-                    mChoosedCourseList.remove(mChoosedCourseList.get(position - 1));
+                    mchoseCourseList.remove(mchoseCourseList.get(position - 1));
                 }
             }
         });
@@ -67,7 +67,9 @@ public class ChooseCourseAdapter extends RecyclerView.Adapter<ChooseCourseAdapte
     }
 
     public void loadChooseInfo(){
-        mListener.onChooseListener(mChoosedCourseList);
+        if(mListener != null){
+            mListener.onChooseListener(mchoseCourseList);
+        }
     }
 
     public void setChooseCourseListener(ChooseCourseListener listener) {
@@ -75,7 +77,7 @@ public class ChooseCourseAdapter extends RecyclerView.Adapter<ChooseCourseAdapte
     }
 
     public interface ChooseCourseListener {
-        void onChooseListener(List<String> choosedList);
+        void onChooseListener(List<String> choseList);
     }
 
     static class ChooseCourseViewHolder extends RecyclerView.ViewHolder {

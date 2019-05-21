@@ -1,5 +1,6 @@
 package com.example.studentmanagersystem.student.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +30,8 @@ public class StudentHomeActivity extends BaseActivity {
         courseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(StudentHomeActivity.this, CourseActivity.class);
+                startActivity(intent);
             }
         });
 

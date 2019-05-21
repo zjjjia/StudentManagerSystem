@@ -12,6 +12,7 @@
         app:layout_constraintHorizontal_weight="2"
         android:textSize="18sp"
         android:textColor="#000000"
+        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/course_teacher_name"/>
@@ -30,6 +31,7 @@
         app:layout_constraintHorizontal_weight="2"
         android:textSize="18sp"
         android:textColor="#000000"
+        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/course_name"
         app:layout_constraintEnd_toStartOf="@id/course_time"/>
@@ -48,6 +50,7 @@
         app:layout_constraintHorizontal_weight="2"
         android:textSize="18sp"
         android:textColor="#000000"
+        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/course_teacher_name"
         app:layout_constraintEnd_toStartOf="@id/course_check_box"/>

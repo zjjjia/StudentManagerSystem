@@ -57,6 +57,8 @@ public class Course extends BmobObject {
                 ", location='" + location + '\'' +
                 ", time='" + time + '\'' +
                 ", teacherId='" + teacherId + '\'' +
+                ", userName='" + userName + '\'' +
                 '}';
     }
+
 }

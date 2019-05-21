@@ -21,7 +21,8 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     @NonNull
     @Override
     public CourseListHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_course_list, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_course_list,
+                viewGroup, false);
 
         return new CourseListHolder(view);
     }
@@ -50,10 +51,10 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
     static class CourseListHolder extends RecyclerView.ViewHolder {
 
-        public TextView courseNameText;
-        public TextView courseTimeText;
+        TextView courseNameText;
+        TextView courseTimeText;
 
-        public CourseListHolder(@NonNull View itemView) {
+        CourseListHolder(@NonNull View itemView) {
             super(itemView);
 
             courseNameText = itemView.findViewById(R.id.course_name);

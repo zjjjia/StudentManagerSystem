@@ -33,17 +33,17 @@ public class CoursePresenter extends BasePresenter<ICourseView> {
         SharedPreferences userInfo = mContext.getSharedPreferences("userInfo", 0);
         String studentId = userInfo.getString("objectId", null);
 
-        mModel.queryStudentCourseInfo(studentId, new CourseModel.CourseCallback<List<Course>>() {
+        mModel.queryChoseCourseId(studentId, new CourseModel.CourseCallback<List<Course>>() {
             @Override
-            public void onSuccess(List<Course> list) {
-                mIView.loadCourseInfo(list);
+            public void onSuccess(List<Course> result) {
+                mIView.loadCourseInfo(result);
             }
 
             @Override
             public void onError(Throwable e) {
-                LogUtil.e(TAG, "onError: " + e);
                 mIView.onError(e);
             }
         });
+
     }
 }

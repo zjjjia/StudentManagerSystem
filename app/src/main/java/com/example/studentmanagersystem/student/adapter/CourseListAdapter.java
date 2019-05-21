@@ -55,7 +55,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
         private TextView courseTeacherText;
         private TextView courseTimeText;
 
-        public CourseListViewHolder(@NonNull View itemView) {
+        CourseListViewHolder(@NonNull View itemView) {
             super(itemView);
 
             courseNameText = itemView.findViewById(R.id.course_name);

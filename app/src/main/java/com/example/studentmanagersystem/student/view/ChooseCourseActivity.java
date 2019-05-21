@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.studentmanagersystem.R;
+import com.example.studentmanagersystem.Utils.LogUtil;
 import com.example.studentmanagersystem.entity.Course;
 import com.example.studentmanagersystem.student.adapter.ChooseCourseAdapter;
 import com.example.studentmanagersystem.student.presenter.ChooseCoursePresenter;
@@ -16,37 +17,39 @@ import com.example.studentmanagersystem.student.presenter.IView.IChooseCourseVie
 
 import java.util.List;
 
-import cn.bmob.v3.exception.BmobException;
-
 public class ChooseCourseActivity extends AppCompatActivity implements IChooseCourseView {
 
+    private static final String TAG = "ChooseCourseActivity";
     private RecyclerView mChooseCourseRecycler;
-    private Button completedChooseBtn;
+    private Button mCompletedChooseBtn;
     private ChooseCourseAdapter mAdapter;
-    private ChooseCoursePresenter mPrenter;
+    private ChooseCoursePresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_course);
 
-        mPrenter = new ChooseCoursePresenter(this, this);
+        mPresenter = new ChooseCoursePresenter(this, this);
         initView();
     }
 
     private void initView() {
         mChooseCourseRecycler = findViewById(R.id.choose_course_list);
-        completedChooseBtn = findViewById(R.id.completed_choose_btn);
+        mCompletedChooseBtn = findViewById(R.id.completed_choose_btn);
 
-        completedChooseBtn.setOnClickListener(new View.OnClickListener() {
+        mCompletedChooseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mAdapter.setChooseCourseListener(new ChooseCourseAdapter.ChooseCourseListener() {
                     @Override
                     public void onChooseListener(List<String> choseList) {
-                        mPrenter.saveChoosedCourseInfo(choseList);
+                        LogUtil.d(TAG, "onChooseListener: " + choseList.toString());
+                        mPresenter.saveChoosedCourseInfo(choseList);
                     }
                 });
+                mAdapter.loadChooseInfo();
+                ChooseCourseActivity.this.finish();
             }
         });
 

@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.studentmanagersystem.R;
 import com.example.studentmanagersystem.base.BaseActivity;
@@ -65,11 +66,12 @@ public class CourseActivity extends BaseActivity implements ICourseView {
 
     @Override
     public void loadCourseInfo(List<Course> courseList) {
-
+        mAdapter.fillList(courseList);
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onError(Throwable e) {
-
+        Toast.makeText(this, "error: " + e, Toast.LENGTH_SHORT).show();
     }
 }
