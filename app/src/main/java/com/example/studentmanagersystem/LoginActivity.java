@@ -27,7 +27,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         setContentView(R.layout.activity_login);
 
         mPresenter = new LoginPresenter(this, this);
-        mPresenter.login("20153026", "test");
+        mPresenter.login("20153027", "test");
         initView();
     }
 

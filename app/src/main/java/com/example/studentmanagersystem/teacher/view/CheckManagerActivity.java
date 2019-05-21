@@ -76,7 +76,6 @@ public class CheckManagerActivity extends BaseActivity implements ICheckManagerV
     private void changeView() {
         mCheckKeyText.setVisibility(View.GONE);
         mStartCheckBtn.setVisibility(View.GONE);
-        mCountdownText.setVisibility(View.VISIBLE);
         mCheckedStudentRecycler.setVisibility(View.VISIBLE);
         mUnCheckStudentRecycler.setVisibility(View.VISIBLE);
     }

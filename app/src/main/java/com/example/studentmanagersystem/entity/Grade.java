@@ -1,16 +1,12 @@
 package com.example.studentmanagersystem.entity;
 
-import android.content.Intent;
 
 import cn.bmob.v3.BmobObject;
 
-public class ChoseCourse extends BmobObject {
-
-    private String studentId;   //user表中的objectId
-    private String courseId;    //course表中的objectId
+public class Grade extends BmobObject {
+    private String studentId;
+    private String courseId;
     private Integer grade;
-    private String studentName;
-    private Integer userId;           //学号
 
     public String getStudentId() {
         return studentId;
@@ -36,30 +32,12 @@ public class ChoseCourse extends BmobObject {
         this.grade = grade;
     }
 
-    public String getStudentName() {
-        return studentName;
-    }
-
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     @Override
     public String toString() {
-        return "ChoseCourse{" +
+        return "Grade{" +
                 "studentId='" + studentId + '\'' +
                 ", courseId='" + courseId + '\'' +
                 ", grade=" + grade +
-                ", studentName='" + studentName + '\'' +
-                ", userId='" + userId + '\'' +
                 '}';
     }
 }
