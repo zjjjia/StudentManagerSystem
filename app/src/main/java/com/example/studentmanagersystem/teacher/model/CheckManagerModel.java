@@ -1,6 +1,7 @@
 package com.example.studentmanagersystem.teacher.model;
 
 import com.example.studentmanagersystem.Utils.LogUtil;
+import com.example.studentmanagersystem.callback.Callback;
 import com.example.studentmanagersystem.entity.Check;
 import com.example.studentmanagersystem.entity.SetCheck;
 import com.example.studentmanagersystem.entity.User;
@@ -48,14 +49,14 @@ public class CheckManagerModel {
         });
     }
 
-    public void startCheck(String checkKey, long startTime, final CheckManagerCallback callback) {
+    public void startCheck(String checkKey, long startTime, final Callback<List<Check>> callback) {
         SetCheck setCheck = new SetCheck();
         setCheck.setStartTime(startTime);
         setCheck.update(checkKey, new UpdateListener() {
             @Override
             public void done(BmobException e) {
                 if (e == null) {
-                    callback.onSuccess();
+                    callback.onSuccess(null);
                 } else {
                     callback.onError(e);
                 }
@@ -63,16 +64,14 @@ public class CheckManagerModel {
         });
     }
 
-    public void loadCheckedInfo(String checkKey, final CheckManagerCallback<Check> callback) {
+    public void loadCheckedInfo(String checkKey, final Callback<List<Check>> callback) {
         BmobQuery<Check> query = new BmobQuery<>();
-        query.include("User[userName|userId]");
         query.addWhereEqualTo("checkKey", checkKey);
         query.findObjects(new FindListener<Check>() {
             @Override
             public void done(List<Check> list, BmobException e) {
                 if (e == null) {
-                    LogUtil.d(TAG, "done: " + list.toString());
-                    callback.querySuccessCallback(list);
+                   queryStudentInfoByStudentId(list, callback);
                 } else {
                     callback.onError(e);
                 }
@@ -80,22 +79,49 @@ public class CheckManagerModel {
         });
     }
 
-    public void loadUnCheckedInfo(List<Check> checkedList, final CheckManagerCallback<User> callback) {
-        List<Integer> studentIdList = new ArrayList<>();
+    private void queryStudentInfoByStudentId(final List<Check> checkList, final Callback<List<Check>> callback){
+        List<String> studentIds = new ArrayList<>();
+        for(Check check : checkList){
+            studentIds.add(check.getStudentId());
+        }
+        BmobQuery<User> query = new BmobQuery<>();
+        query.addWhereContainedIn("objectId", studentIds);
+        query.findObjects(new FindListener<User>() {
+            @Override
+            public void done(List<User> list, BmobException e) {
+                if(e ==null) {
+                    for (Check check : checkList) {
+                        for (User user : list) {
+                            if (check.getStudentId().equals(user.getObjectId())) {
+                                check.setUserName(user.getUserName());
+                                check.setUserId(user.getUserId());
+                            }
+                        }
+                    }
+                    callback.onSuccess(checkList);
+                }else {
+                    callback.onError(e);
+                }
+            }
+        });
+    }
+
+    public void loadUnCheckedInfo(List<Check> checkedList, final Callback<List<User>> callback) {
+        List<String> studentIdList = new ArrayList<>();
         for (Check checkedInfo : checkedList) {
             studentIdList.add(checkedInfo.getStudentId());
         }
 
         BmobQuery<User> query = new BmobQuery<>();
         query.addWhereEqualTo("permission", 1);
-        query.addWhereNotContainedIn("userId", studentIdList);
+        query.addWhereNotContainedIn("objectId", studentIdList);
 
         query.findObjects(new FindListener<User>() {
             @Override
             public void done(List<User> list, BmobException e) {
                 if (e == null) {
                     LogUtil.d(TAG, "done: " + list.toString());
-                    callback.querySuccessCallback(list);
+                    callback.onSuccess(list);
                 } else {
                     callback.onError(e);
                 }

@@ -60,9 +60,13 @@ public class CheckManagerActivity extends BaseActivity implements ICheckManagerV
     }
 
     private void initRecyclerView() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mCheckedStudentRecycler.setLayoutManager(layoutManager);
+        LinearLayoutManager checkedLayoutManager = new LinearLayoutManager(this);
+        checkedLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mCheckedStudentRecycler.setLayoutManager(checkedLayoutManager);
+
+        LinearLayoutManager unCheckLayoutManager = new LinearLayoutManager(this);
+        unCheckLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mUnCheckStudentRecycler.setLayoutManager(unCheckLayoutManager);
 
         //对已签到列表配置适配器
         mCheckedListAdapter = new CheckStudentListAdapter();
@@ -114,15 +118,7 @@ public class CheckManagerActivity extends BaseActivity implements ICheckManagerV
     }
 
     @Override
-    public void loadUnCheckedInfo(List<User> unCheckList) {
-        List<Check> unCheckInfoList = new ArrayList<>();
-        for (User user : unCheckList) {
-            Check check = new Check();
-            check.setStudentId(user.getUserId());
-            check.setUserName(user.getUserName());
-            unCheckInfoList.add(check);
-        }
-
+    public void loadUnCheckedInfo(List<Check> unCheckInfoList) {
         mUnCheckListAdapter.fillList(unCheckInfoList);
         mUnCheckListAdapter.notifyDataSetChanged();
     }

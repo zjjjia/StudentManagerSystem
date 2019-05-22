@@ -45,7 +45,7 @@ public class ChooseCourseActivity extends AppCompatActivity implements IChooseCo
                     @Override
                     public void onChooseListener(List<String> choseList) {
                         LogUtil.d(TAG, "onChooseListener: " + choseList.toString());
-                        mPresenter.saveChoosedCourseInfo(choseList);
+                        mPresenter.saveChoseCourseInfo(choseList);
                     }
                 });
                 mAdapter.loadChooseInfo();

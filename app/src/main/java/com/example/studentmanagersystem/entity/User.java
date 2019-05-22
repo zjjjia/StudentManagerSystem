@@ -5,7 +5,7 @@ import cn.bmob.v3.BmobObject;
 
 public class User extends BmobObject {
 
-    private Integer userId;
+    private String userId;
     private String userName;
     private String password;
     /**
@@ -13,11 +13,11 @@ public class User extends BmobObject {
      */
     private Integer permission;
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

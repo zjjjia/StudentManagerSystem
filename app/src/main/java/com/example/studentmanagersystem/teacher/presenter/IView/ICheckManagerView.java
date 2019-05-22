@@ -22,5 +22,5 @@ public interface ICheckManagerView extends IView {
 
     void loadCheckedInfo(List<Check> checkList);
 
-    void loadUnCheckedInfo(List<User> unCheckList);
+    void loadUnCheckedInfo(List<Check> unCheckList);
 }

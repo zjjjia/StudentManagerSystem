@@ -3,6 +3,7 @@ package com.example.studentmanagersystem.teacher.presenter;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.studentmanagersystem.callback.Callback;
 import com.example.studentmanagersystem.teacher.model.CheckManagerModel;
 import com.example.studentmanagersystem.Utils.LogUtil;
 import com.example.studentmanagersystem.base.BasePresenter;
@@ -11,6 +12,7 @@ import com.example.studentmanagersystem.entity.SetCheck;
 import com.example.studentmanagersystem.entity.User;
 import com.example.studentmanagersystem.teacher.presenter.IView.ICheckManagerView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -88,21 +90,17 @@ public class CheckManagerPresenter extends BasePresenter<ICheckManagerView> {
      */
     public void startChecked() {
         long startTime = Calendar.getInstance().getTimeInMillis();
-        mModel.startCheck(mCheckKey, startTime, new CheckManagerModel.CheckManagerCallback() {
+        mModel.startCheck(mCheckKey, startTime, new Callback<List<Check>>() {
             @Override
-            public void onSuccess() {
+            public void onSuccess(List<Check> result) {
                 mIView.startOnSuccess();
                 intervalLoadInfo();
             }
 
             @Override
-            public void onError(BmobException e) {
+            public void onError(Throwable e) {
+                LogUtil.e(TAG, "onError: " + e);
                 mIView.onError(e);
-            }
-
-            @Override
-            public void querySuccessCallback(List list) {
-
             }
         });
     }
@@ -142,23 +140,18 @@ public class CheckManagerPresenter extends BasePresenter<ICheckManagerView> {
      * 加载已签到学生信息
      */
     private void loadCheckedStudentInfo() {
-        mModel.loadCheckedInfo(mCheckKey, new CheckManagerModel.CheckManagerCallback<Check>() {
+        mModel.loadCheckedInfo(mCheckKey, new Callback<List<Check>>() {
             @Override
-            public void onSuccess() {
-
+            public void onSuccess(List<Check> result) {
+                mIView.loadCheckedInfo(result);
+                loadUnCheckedStudentInfo(result);
             }
 
             @Override
-            public void onError(BmobException e) {
+            public void onError(Throwable e) {
+                LogUtil.e(TAG, "onError: " + e);
                 mIView.onError(e);
             }
-
-            @Override
-            public void querySuccessCallback(List<Check> list) {
-                mIView.loadCheckedInfo(list);
-                loadUnCheckedStudentInfo(list);
-            }
-
         });
     }
 
@@ -168,20 +161,23 @@ public class CheckManagerPresenter extends BasePresenter<ICheckManagerView> {
      * @param checkedList 已签到学生信息
      */
     private void loadUnCheckedStudentInfo(List<Check> checkedList) {
-        mModel.loadUnCheckedInfo(checkedList, new CheckManagerModel.CheckManagerCallback<User>() {
+        mModel.loadUnCheckedInfo(checkedList, new Callback<List<User>>() {
             @Override
-            public void onSuccess() {
-
+            public void onSuccess(List<User> result) {
+                List<Check> unCheckList = new ArrayList<>();
+                for (User user : result) {
+                    Check check = new Check();
+                    check.setUserId(user.getUserId());
+                    check.setUserName(user.getUserName());
+                    unCheckList.add(check);
+                }
+                mIView.loadUnCheckedInfo(unCheckList);
             }
 
             @Override
-            public void onError(BmobException e) {
+            public void onError(Throwable e) {
+                LogUtil.e(TAG, "onError: " + e);
                 mIView.onError(e);
-            }
-
-            @Override
-            public void querySuccessCallback(List<User> list) {
-                mIView.loadUnCheckedInfo(list);
             }
         });
     }

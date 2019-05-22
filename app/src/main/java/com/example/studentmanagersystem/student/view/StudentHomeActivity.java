@@ -38,7 +38,8 @@ public class StudentHomeActivity extends BaseActivity {
         checkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(StudentHomeActivity.this, CheckActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -33,7 +33,7 @@ public class CheckStudentListAdapter extends RecyclerView.Adapter<CheckStudentLi
             viewHolder.studentNameText.setText("姓名");
             viewHolder.checkTimeText.setText("签到时间");
         } else {
-            viewHolder.studentIdText.setText(mStudentList.get(position - 1).getStudentId());
+            viewHolder.studentIdText.setText(String.valueOf(mStudentList.get(position - 1).getUserId()));
             viewHolder.studentNameText.setText(mStudentList.get(position - 1).getUserName());
             viewHolder.checkTimeText.setText(mStudentList.get(position - 1).getCreatedAt());
         }
@@ -45,6 +45,7 @@ public class CheckStudentListAdapter extends RecyclerView.Adapter<CheckStudentLi
     }
 
     public void fillList(List<Check> studentList) {
+        mStudentList.clear();
         if (!studentList.isEmpty()) {
             mStudentList = studentList;
         }

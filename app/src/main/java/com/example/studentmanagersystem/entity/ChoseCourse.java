@@ -10,7 +10,7 @@ public class ChoseCourse extends BmobObject {
     private String courseId;    //course表中的objectId
     private Integer grade;
     private String studentName;
-    private Integer userId;           //学号
+    private String userId;           //学号
 
     public String getStudentId() {
         return studentId;
@@ -44,11 +44,11 @@ public class ChoseCourse extends BmobObject {
         this.studentName = studentName;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

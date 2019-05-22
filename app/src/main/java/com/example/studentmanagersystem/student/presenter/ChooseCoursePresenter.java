@@ -43,7 +43,7 @@ public class ChooseCoursePresenter extends BasePresenter<IChooseCourseView> {
         });
     }
 
-    public void saveChoosedCourseInfo(List<String> courseIdInfo){
+    public void saveChoseCourseInfo(List<String> courseIdInfo){
         SharedPreferences userInfo = mContext.getSharedPreferences("userInfo", 0);
         String studentId = userInfo.getString("studentId", null);
         mModel.saveChoseCourseInfo(courseIdInfo, studentId, new CourseModel.CourseCallback() {

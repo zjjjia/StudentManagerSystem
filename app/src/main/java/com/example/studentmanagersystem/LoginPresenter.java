@@ -61,7 +61,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
                 } else {
                     editor.putString("studentId", user.getObjectId());
                 }
-                editor.putInt("userId", user.getUserId());
+                editor.putString("userId", user.getUserId());
                 editor.putString("userName", user.getUserName());
                 editor.putString("password", user.getPassword());
                 editor.putInt("permission", user.getPermission());

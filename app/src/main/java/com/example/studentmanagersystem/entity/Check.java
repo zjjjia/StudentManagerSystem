@@ -5,16 +5,17 @@ import cn.bmob.v3.datatype.BmobGeoPoint;
 
 public class Check extends BmobObject {
 
-    private Integer studentId;
+    private String studentId;
+    private String userId;     //学号
     private String userName;
     private BmobGeoPoint point;
     private String checkKey;
 
-    public Integer getStudentId() {
+    public String getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(Integer studentId) {
+    public void setStudentId(String studentId) {
         this.studentId = studentId;
     }
 
@@ -42,6 +43,14 @@ public class Check extends BmobObject {
         this.checkKey = checkKey;
     }
 
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     @Override
     public String toString() {

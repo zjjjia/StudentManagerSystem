@@ -5,10 +5,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_constraintVertical_chainStyle="packed">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#afafaf"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
         android:id="@+id/student_id_text"
         android:layout_width="0dp"
         android:layout_height="40dp"
+        android:gravity="center"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +32,7 @@
         android:id="@+id/student_name_text"
         android:layout_width="0dp"
         android:layout_height="40dp"
+        android:gravity="center"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/student_id_text"
@@ -41,6 +49,7 @@
         android:id="@+id/check_time_text"
         android:layout_width="0dp"
         android:layout_height="40dp"
+        android:gravity="center"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/student_name_text"
