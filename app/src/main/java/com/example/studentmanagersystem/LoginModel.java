@@ -14,7 +14,7 @@ public class LoginModel {
 
         BmobQuery<User> query = new BmobQuery<>();
 
-        query.addWhereEqualTo("userId", Integer.valueOf(userId));
+        query.addWhereEqualTo("userId", userId);
         query.addWhereEqualTo("password", password);
 
         query.findObjects(new FindListener<User>() {

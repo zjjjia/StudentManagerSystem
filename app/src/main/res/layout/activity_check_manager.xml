@@ -49,6 +49,7 @@
         android:visibility="gone"/>
 
     <TextView
+        android:id="@+id/checked_text"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:paddingStart="10dp"
@@ -71,6 +72,7 @@
         android:visibility="gone"/>
 
     <TextView
+        android:id="@+id/un_check_text"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:paddingStart="10dp"

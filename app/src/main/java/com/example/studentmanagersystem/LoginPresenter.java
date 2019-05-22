@@ -3,6 +3,7 @@ package com.example.studentmanagersystem;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.studentmanagersystem.Utils.LogUtil;
 import com.example.studentmanagersystem.base.BasePresenter;
 import com.example.studentmanagersystem.entity.User;
 
@@ -30,6 +31,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
     }
 
     public void login(String userId, String password) {
+        LogUtil.d(TAG, "login: " + userId + ", password: " + password);
         mModel.login(userId, password, new LoginModel.LoginCallback() {
             @Override
             public void accountError() {

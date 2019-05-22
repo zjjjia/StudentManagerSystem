@@ -26,9 +26,9 @@ public class BaseActivity extends FragmentActivity implements IView{
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        Bmob.initialize(this, "78b9431d6307f6cb76267edac524790f");
+        Bmob.initialize(this, "8bb48b62f9307cf022d7c21fa30bb045");
 
-        query();
+        //query();
     }
 
     private void query(){
@@ -36,17 +36,14 @@ public class BaseActivity extends FragmentActivity implements IView{
         query.findObjects(new FindListener<User>() {
             @Override
             public void done(List<User> list, BmobException e) {
-                if(e == null){
-                    if(list.size() == 0){
-                        initApp();
-                    }
-                }else{
-                    LogUtil.e(TAG, "done: " + e);
-                    Toast.makeText(BaseActivity.this, "error： " + e, Toast.LENGTH_SHORT).show();
+                if(e != null && e.getErrorCode() == 101){
+                    initApp();
                 }
             }
         });
     }
+
+
 
     private void initApp(){
         addAccount("20153027", "用户1", "test",  0);

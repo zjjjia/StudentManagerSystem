@@ -31,6 +31,8 @@ public class CheckManagerActivity extends BaseActivity implements ICheckManagerV
     private CheckStudentListAdapter mCheckedListAdapter;
     private CheckStudentListAdapter mUnCheckListAdapter;
     private CheckManagerPresenter mPresenter;
+    private TextView checkLableText;
+    private TextView unCheckLbaleText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,8 @@ public class CheckManagerActivity extends BaseActivity implements ICheckManagerV
         mCountdownText = findViewById(R.id.countdown_text);
         mCheckedStudentRecycler = findViewById(R.id.checked_list);
         mUnCheckStudentRecycler = findViewById(R.id.un_checked_list);
+        checkLableText = findViewById(R.id.checked_text);
+        unCheckLbaleText = findViewById(R.id.un_check_text);
 
         mStartCheckBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +86,9 @@ public class CheckManagerActivity extends BaseActivity implements ICheckManagerV
         mStartCheckBtn.setVisibility(View.GONE);
         mCheckedStudentRecycler.setVisibility(View.VISIBLE);
         mUnCheckStudentRecycler.setVisibility(View.VISIBLE);
+        checkLableText.setVisibility(View.VISIBLE);
+        unCheckLbaleText.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
